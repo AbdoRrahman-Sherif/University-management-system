@@ -44,8 +44,7 @@ class AdmissionApplicationController extends Controller
         $national_id = $request->national_id;
         $password = bcrypt($request->password);
         $date_of_birth = $request->dob;
-        $application_type = $request->faculty_name;
-
+        $application_type = $request->application_type;
     
         try {
             DB::statement("INSERT INTO admission_applications (applicant_email, name, national_id, password, date_of_birth, fees_paid, application_type, exam_date, exam_status, created_at, updated_at) 
@@ -61,8 +60,9 @@ class AdmissionApplicationController extends Controller
     {
         $id = Auth::guard('admission_application')->id();
         $admission = DB::selectOne('SELECT * FROM admission_applications WHERE id = ?', [$id]);
+        $faculties = DB::select('SELECT * FROM faculties');
 
-        return view('dashboards.AdmissionApplicationDashboard', compact('admission'));
+        return view('dashboards.AdmissionApplicationDashboard', compact('admission','faculties'));
     }
 
     public function show($id)
@@ -117,6 +117,8 @@ class AdmissionApplicationController extends Controller
     {
         $id = Auth::guard('admission_application')->id();
         DB::delete('DELETE FROM admission_applications WHERE id = ?', [$id]);
+        return redirect()->route('admission')->with('success', 'Admission application deleted successfully.');       
+
     }
 
     public function submitAdmission(Request $request)
