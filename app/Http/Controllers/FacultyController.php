@@ -16,6 +16,14 @@ class FacultyController extends Controller
         // Return a view for creating a faculty
     }
 
+    public function facultiesPage()
+    {
+        $faculties= DB::select('SELECT * FROM faculties'
+    
+    );
+        return view('faculties', compact('faculties'));
+    }
+
     public function store(Request $request)
     {
         DB::insert('INSERT INTO faculties (faculty_name, created_at, updated_at) VALUES (?, NOW(), NOW())', [

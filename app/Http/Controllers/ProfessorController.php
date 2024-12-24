@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProfessorController extends Controller
 {
@@ -11,11 +12,28 @@ class ProfessorController extends Controller
         return DB::select('SELECT * FROM professors');
     }
 
+    public function professorsPage()
+    {
+        $professors= DB::select('SELECT * FROM professors');
+        return view('professors', compact('professors'));
+    }
+
+
     public function create()
     {
         // Return a view for creating a professor
     }
+    public function dashboard()
+    {
+        $id = Auth::guard('professor')->id();
+        $professor =DB::selectOne
+        ('SELECT professors.*, faculties.faculty_name AS faculty_name 
+        FROM professors 
+        JOIN faculties ON faculties.id = professors.faculty_id 
+        WHERE professors.id = ?', [$id]);
 
+        return view('dashboards.ProfessorDashboard', compact('professor'));
+    }
     public function store(Request $request)
     {
         DB::insert('INSERT INTO professors (name, university_email, national_id, password, date_of_birth, gender, faculty_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())', [

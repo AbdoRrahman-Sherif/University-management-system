@@ -12,9 +12,23 @@
 
 
         <main>
-            <h1 id="under_dev">Under development</h1>
+            @foreach ($professors as $professor)
+            <div class="contanier">
+                <div class="wrapper">
+                    <img src="{{ asset('pictures/about-page/Default_pfp.jpg')}}" alt="couldn't load picture">
+                    <h3>Dr. {{ $professor->name}}</h3>
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, rem! Voluptatum fugiat recusandae aut incidunt facere deserunt voluptas culpa labore.</li>
+                    </ul>
+                </div>
+            </div>
+            @endforeach
+
         </main>
 
+
+
+        
         <footer id="footer">
             @include('layouts.footer')
         </footer>

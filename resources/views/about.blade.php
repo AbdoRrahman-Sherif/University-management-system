@@ -20,7 +20,7 @@
             </section>
             <section id="about_s2">
                 <div class="wrapper">
-                    <img src="pictures/about page/1.jpg" alt="couldn't load picture">
+                    <img src="pictures/about-page/1.jpg" alt="couldn't load picture">
                     <p>
                         Egypt-Japan University of Science and Technology (E-JUST) is a research university with an ambition 
                         to cultivate an academic environment and become a benchmark for the Egyptian and African countries in education.
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="wrapper">
-                    <img src="pictures/about page/2.jpg" alt="couldn't load picture">
+                    <img src="pictures/about-page/2.jpg" alt="couldn't load picture">
                     <p>
                         There is a strong relationship between both governments where they both divide the cooperation 
                         cohesively to ensure positive results. The Japan International Cooperation Agency (JICA) fully 
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="wrapper">
-                    <img src="pictures/about page/3.jpg" alt="couldn't load picture">
+                    <img src="pictures/about-page/3.jpg" alt="couldn't load picture">
                     <h3>Vision</h3>
                     <ul>
                         <li>A status of national and international recognition.</li>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="wrapper">
-                    <img src="pictures/about page/4.png" alt="couldn't load picture">
+                    <img src="pictures/about-page/4.png" alt="couldn't load picture">
                     <h3>Mission</h3>
                     <ul>
                         <li>To become a role model for graduate education and research institutions in Egypt by fostering the Japanese educational standards, policies, and systems. In this regard, E-JUST will foster links of collaboration between Egyptian and Japanese academic institutions.</li>
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="wrapper">
-                    <img src="pictures/about page/5.jpg" alt="couldn't load picture">
+                    <img src="pictures/about-page/5.jpg" alt="couldn't load picture">
                     <h3>Concept</h3>
                     <ul>
                         <li>National university based on a partnership between Egypt and Japan.</li>
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="wrapper">
-                    <img src="pictures/about page/6.jpg" alt="couldn't load picture">
+                    <img src="pictures/about-page/6.jpg" alt="couldn't load picture">
                     <h3>Vision</h3>
                     <ul>
                         <li>A status of national and international recognition.</li>

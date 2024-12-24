@@ -3,10 +3,13 @@
 use App\Http\Controllers\AdmissionApplicationController;
 use App\Http\Controllers\Auth\BaseAuthenticationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\StaffAuthenticationController;
-use App\Http\Controllers\Auth\UGStudentAuthenticationController;
-use App\Http\Controllers\Auth\PGStudentAuthenticationController;
-use App\Http\Controllers\Auth\ProfessorAuthenticationController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\UgStudentController;
+use App\Http\Controllers\PgStudentController;
+
 
 //views
 Route::get('/', function () {
@@ -20,13 +23,10 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/faculties', function () {
-    return view('faculties');
-})->name('faculties');
 
-Route::get('/professors', function () {
-    return view('professors');
-})->name('professors');
+Route::get('/faculties',  [FacultyController::class, 'facultiesPage'])->name('faculties');
+
+Route::get('/professors',  [ProfessorController::class, 'professorsPage'])->name('professors');
 
 
 //admission
@@ -54,20 +54,12 @@ Route::post('/logout', [BaseAuthenticationController::class, 'logout'])->name('l
 
 //dashboards
 
-Route::middleware(['role:staff'])->get('/staff/dashboard', function () {
-    return view('dashboards.StaffDashboard');
-})->name('staff.dashboard');
+Route::middleware(['role:staff'])->get('/staff/dashboard',  [StaffController::class, 'dashboard'])->name('staff.dashboard');
 
-Route::middleware(['role:ug_student'])->get('/ug_students/dashboard', function () {
-    return view('dashboards.UgStudentDashboard');
-})->name('ug_students.dashboard');
+Route::middleware(['role:ug_student'])->get('/ug_students/dashboard', [UgStudentController::class, 'dashboard'])->name('ug_students.dashboard');
 
-Route::middleware(['role:pg_student'])->get('/pg_students/dashboard', function () {
-    return view('dashboards.PgStudentDashboard');
-})->name('pg_students.dashboard');
+Route::middleware(['role:pg_student'])->get('/pg_students/dashboard',[PgStudentController::class, 'dashboard'])->name('pg_students.dashboard');
 
-Route::middleware(['role:professor'])->get('/professors/dashboard', function () {
-    return view('dashboards.ProfessorDashboard');
-})->name('professors.dashboard');
+Route::middleware(['role:professor'])->get('/professors/dashboard', [ProfessorController::class, 'dashboard'])->name('professors.dashboard');
 
 Route::middleware(['role:admission_application'])->get('/admission/dashboard',  [AdmissionApplicationController::class, 'dashboard'])->name('admission.dashboard');

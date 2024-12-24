@@ -13,6 +13,27 @@
     @include('layouts.header')
 <main>
 
+    <div class="contanier">
+        <h1 >Welcome to Your Dashboard Staff {{$staff->staff_type}}</h1>
+
+
+        @if(session('success'))
+            <p style="color: green;">{{ session('success') }}</p>
+        @endif
+
+        @if($staff)
+            <table border="1">
+                <tr><th>Name</th><td>{{ $staff->name }}</td></tr>
+                <tr><th>Email</th><td>{{ $staff->university_email }}</td></tr>
+                <tr><th>National ID</th><td>{{ $staff->national_id }}</td></tr>
+                <tr><th>Birth Date</th><td>{{ $staff->date_of_birth }}</td></tr>
+                <tr><th>Sex</th><td>{{ $staff->sex }}</td></tr>
+                <tr><th>Type</th><td>{{ $staff->staff_type }}</td></tr>
+            </table>
+        @else
+            <p>No data found.</p>
+        @endif
+    </div>
 
 </main>
 <footer>
