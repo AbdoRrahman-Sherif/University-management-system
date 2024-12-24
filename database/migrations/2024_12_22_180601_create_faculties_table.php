@@ -12,8 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("
-        CREATE TABLE faculties (
+        DB::statement("CREATE TABLE faculties (
             id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             faculty_name VARCHAR(255) NOT NULL,
             created_at TIMESTAMP NULL DEFAULT NULL,

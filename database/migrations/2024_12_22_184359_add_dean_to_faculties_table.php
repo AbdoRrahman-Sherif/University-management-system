@@ -12,8 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("
-        ALTER TABLE faculties
+        DB::statement("ALTER TABLE faculties
         ADD COLUMN dean_id BIGINT UNSIGNED NULL,
         ADD CONSTRAINT fk_dean FOREIGN KEY (dean_id) REFERENCES professors(id);
     ");

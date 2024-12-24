@@ -12,8 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("
-        CREATE TABLE pg_student_thesis_supervisor (
+        DB::statement("CREATE TABLE pg_student_thesis_supervisor (
             faculty_id BIGINT UNSIGNED NOT NULL,
             professor_id BIGINT UNSIGNED NOT NULL,
             PRIMARY KEY (faculty_id, professor_id),

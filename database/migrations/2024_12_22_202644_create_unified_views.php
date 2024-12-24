@@ -12,8 +12,11 @@ return new class extends Migration
      */
     public function up() : void
     {
-        DB::statement("
-            CREATE VIEW students AS 
+        DB::statement("DROP VIEW IF EXISTS students");
+        DB::statement("DROP VIEW IF EXISTS academic_members");
+        DB::statement("DROP VIEW IF EXISTS combined_users");
+
+        DB::statement("CREATE VIEW students AS 
             SELECT id FROM ug_students
             UNION
             SELECT id FROM pg_students
@@ -42,7 +45,7 @@ return new class extends Migration
     
     public function down() : void
     {
-        DB::statement("DROP VIEW IF EXISTS users");
+        DB::statement("DROP VIEW IF EXISTS combined_users");
         DB::statement("DROP VIEW IF EXISTS academic_members");
         DB::statement("DROP VIEW IF EXISTS students");
     }
