@@ -12,6 +12,32 @@
 <body>
     @include('layouts.header')
 <main>
+    <div class="contanier">
+        <h1 >Welcome to Your Dashboard Postgraduate Student!</h1>
+
+
+        @if(session('success'))
+            <p style="color: green;">{{ session('success') }}</p>
+        @endif
+
+        @if($student)
+            <table border="1">
+                <tr><th>Name</th><td>{{ $student->name }}</td></tr>
+                <tr><th>Email</th><td>{{ $student->university_email }}</td></tr>
+                <tr><th>National ID</th><td>{{ $student->national_id }}</td></tr>
+                <tr><th>Birth Date</th><td>{{ $student->date_of_birth }}</td></tr>
+                <tr><th>Sex</th><td>{{ $student->gender }}</td></tr>
+                <tr><th>Status</th><td>{{ $student->status }}</td></tr>
+                <tr><th>section</th><td>{{ $student->section }}</td></tr>
+                <tr><th>Faculty</th><td>{{ $student->faculty_name }}</td></tr>
+                <tr><th>Major</th><td>{{ $student->major_code }}</td></tr>
+                <tr><th>Graduate Program</th><td>{{ $student->graduate_program }}</td></tr>
+                <tr><th>Allowed Credit Hours</th><td>{{ $student->allowed_credit_hours }}</td></tr>
+            </table>
+        @else
+            <p>No data found.</p>
+        @endif
+    </div>
 
 
 </main>

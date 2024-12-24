@@ -25,30 +25,29 @@ class BaseAuthenticationController extends Controller
         $id = $request->id;
         $password = $request->password;
 
-        $staff = DB::selectOne( "SELECT id, password FROM staff WHERE id = $id");
-        if ($staff && Hash::check($password, $staff->password)) {
-            Auth::guard('staff')->loginUsingId($id);
+
+        if (Auth::guard('staff')->attempt(['id' => $id,'password' => $password])) 
+        {
             return redirect()->route('staff.dashboard');
         }
 
-        $ugStudent =DB::selectOne( "SELECT id, password FROM ug_students WHERE id = $id");
-        
-        if ($ugStudent && Hash::check($password, $ugStudent->password)) {
-            Auth::guard('ug_student')->loginUsingId($id);
+
+
+        if (Auth::guard('ug_student')->attempt(['id' => $id, 'password' => $password])) {
             return redirect()->route('ug_students.dashboard');
         }
+        
 
-        $pgStudent = DB::selectOne( "SELECT id, password FROM pg_students WHERE id = $id");
-        if ($pgStudent && Hash::check($password, $pgStudent->password)) {
-            Auth::guard('pg_student')->loginUsingId($id);
+        if (Auth::guard('pg_student')->attempt(['id' => $id, 'password' => $password])) {
             return redirect()->route('pg_students.dashboard');
         }
+        
+        
 
-        $professor =DB::selectOne( "SELECT id, password FROM professors WHERE id = $id");
-        if ($professor && Hash::check($password, $professor->password)) {
-            Auth::guard('professor')->loginUsingId($id);
+        if (Auth::guard('professor')->attempt(['id' => $id, 'password' => $password])) {
             return redirect()->route('professors.dashboard');
         }
+
 
         return back()->withErrors(['login_failed' => 'Invalid id or password']);
     }

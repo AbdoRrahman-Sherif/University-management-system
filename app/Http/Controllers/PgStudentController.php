@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PGStudentController extends Controller
 {
@@ -14,6 +15,17 @@ class PGStudentController extends Controller
     public function create()
     {
         // Return a view for creating a postgraduate student
+    }
+    public function dashboard()
+    {
+        $id = Auth::guard('pg_student')->id();
+        $student = DB::selectOne
+        ('SELECT pg_students.*, faculties.faculty_name AS faculty_name 
+        FROM pg_students 
+        JOIN faculties ON faculties.id = pg_students.faculty_id 
+        WHERE pg_students.id = ?', [$id]);
+    
+        return view('dashboards.PgStudentDashboard', compact('student'));
     }
 
     public function store(Request $request)

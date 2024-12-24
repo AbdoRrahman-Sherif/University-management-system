@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 
+        // try {
+      
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->with('error', $e->getMessage())->withInput();
+        // }
 
 class AdmissionApplicationController extends Controller
 {
@@ -39,7 +44,7 @@ class AdmissionApplicationController extends Controller
         $national_id = $request->national_id;
         $password = bcrypt($request->password);
         $date_of_birth = $request->dob;
-        $application_type = $request->application_type;
+        $application_type = $request->faculty_name;
 
     
         try {
@@ -69,8 +74,11 @@ class AdmissionApplicationController extends Controller
     {
         $id = Auth::guard('admission_application')->id();
         $admission = DB::selectOne('SELECT * FROM admission_applications WHERE id = ?', [$id]);
+        $faculties = DB::select('SELECT * FROM faculties');
 
-        return view('admission.edit', compact('admission'));
+
+
+        return view('admission.edit', compact('admission','faculties'));
     }
 
     public function update(Request $request)
@@ -93,8 +101,15 @@ class AdmissionApplicationController extends Controller
         $date_of_birth = $request->date_of_birth;
         $application_type = $request->application_type;
 
-        DB::statement("UPDATE admission_applications SET applicant_email='$email', name='$name', national_id='$national_id', date_of_birth='$date_of_birth', fees_paid = '$fees_paid', application_type='$application_type',updated_at = NOW() WHERE id = ?", [$id]);
-        return redirect()->back()->with('success', 'Admission application updated successfully.');       
+        
+        try {
+            DB::statement("UPDATE admission_applications SET applicant_email='$email', name='$name', national_id='$national_id', date_of_birth='$date_of_birth', fees_paid = '$fees_paid', application_type='$application_type',updated_at = NOW() WHERE id = ?", [$id]);
+            return redirect()->route('admission.dashboard')->with('success', 'Admission application updated successfully.');       
+    
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage())->withInput();
+        }
+
 
     }
 

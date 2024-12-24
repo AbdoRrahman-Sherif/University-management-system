@@ -46,8 +46,15 @@
                     </div>
                     <div class="user_input_box">
                         <label>Application Type:</label>
-                        <input type="text" name="application_type" value="{{ $admission->application_type }}" required>
+                        <select name="application_type" id="application_type" required>
+                            @foreach($faculties as $faculty)
+                            <option value="{{ $faculty->faculty_name }}">{{ $faculty->faculty_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
+
+
+
                     @if ($errors->any())
                     <div class="alert alert-danger ">  
                             @foreach ($errors->all() as $error)

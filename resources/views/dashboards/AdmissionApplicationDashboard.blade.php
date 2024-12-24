@@ -13,9 +13,7 @@
         <h1 >Welcome to Your Dashboard</h1>
 
 
-        @if(session('success'))
-            <p style="color: green;">{{ session('success') }}</p>
-        @endif
+
 
         @if($admission)
             <table border="1">
@@ -27,6 +25,29 @@
                 <tr><th>Fees Paid</th><td>{{ $admission->fees_paid ? 'Yes' : 'No' }}</td></tr>
                 <tr><th>Application Type</th><td>{{ $admission->application_type }}</td></tr>
             </table>
+
+
+            @if ($errors->any())
+            <div class="alert alert-danger ">  
+                    @foreach ($errors->all() as $error)
+                        {{ $error }} <br />
+                    @endforeach 
+            </div>
+            @endif
+            
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+
             <div class="btn">
                 <a href="{{ route('admissions.edit') }}"><input type="button" name="edit" id="edit" value="edit">
                 </a>

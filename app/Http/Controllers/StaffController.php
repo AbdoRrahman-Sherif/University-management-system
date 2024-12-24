@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
@@ -14,6 +15,14 @@ class StaffController extends Controller
     public function create()
     {
         // Return a view for creating a staff member
+    }
+
+    public function dashboard()
+    {
+        $id = Auth::guard('staff')->id();
+        $staff = DB::selectOne('SELECT * FROM staff WHERE id = ?', [$id]);
+
+        return view('dashboards.StaffDashboard', compact('staff'));
     }
 
     public function store(Request $request)

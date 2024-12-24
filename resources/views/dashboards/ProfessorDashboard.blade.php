@@ -13,6 +13,27 @@
     @include('layouts.header')
 <main>
 
+    <div class="contanier">
+        <h1 >Welcome to Your Dashboard Professor!</h1>
+
+
+        @if(session('success'))
+            <p style="color: green;">{{ session('success') }}</p>
+        @endif
+
+        @if($professor)
+            <table border="1">
+                <tr><th>Name</th><td>{{ $professor->name }}</td></tr>
+                <tr><th>Email</th><td>{{ $professor->university_email }}</td></tr>
+                <tr><th>National ID</th><td>{{ $professor->national_id }}</td></tr>
+                <tr><th>Birth Date</th><td>{{ $professor->date_of_birth }}</td></tr>
+                <tr><th>Sex</th><td>{{ $professor->gender }}</td></tr>
+                <tr><th>Faculty</th><td>{{ $professor->faculty_name }}</td></tr>
+            </table>
+        @else
+            <p>No data found.</p>
+        @endif
+    </div>
 
 </main>
 <footer>

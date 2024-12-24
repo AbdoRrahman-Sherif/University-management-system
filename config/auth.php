@@ -87,22 +87,27 @@ return [
         'staff' => [
             'driver' => 'database',
             'table' => 'staff',
+            'username' => 'id'
         ],
         'ug_students' => [
             'driver' => 'database',
             'table' => 'ug_students',
+            'username' => 'id'
         ],
         'pg_students' => [
             'driver' => 'database',
             'table' => 'pg_students',
+            'username' => 'id'
         ],
         'professors' => [
             'driver' => 'database',
             'table' => 'professors',
+            'username' => 'id'
         ],
         'admission_applications' => [
             'driver' => 'database',
             'table' => 'admission_applications',
+            'username' => 'id'
         ],
 
         // 'users' => [
