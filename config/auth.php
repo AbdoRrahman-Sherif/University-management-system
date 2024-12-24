@@ -56,6 +56,10 @@ return [
             'driver' => 'session',
             'provider' => 'professors',
         ],
+        'admission_application' => [
+            'driver' => 'session',
+            'provider' => 'admission_applications',
+        ],
     ],
 
     /*
@@ -95,6 +99,10 @@ return [
         'professors' => [
             'driver' => 'database',
             'table' => 'professors',
+        ],
+        'admission_applications' => [
+            'driver' => 'database',
+            'table' => 'admission_applications',
         ],
 
         // 'users' => [

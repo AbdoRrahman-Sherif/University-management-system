@@ -12,8 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("
-        CREATE TABLE majors (
+        DB::statement("CREATE TABLE majors (
             faculty_id BIGINT UNSIGNED NOT NULL,
             major_code VARCHAR(255) NOT NULL,
             major_name VARCHAR(255) NOT NULL,

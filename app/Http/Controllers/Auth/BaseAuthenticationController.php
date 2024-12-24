@@ -25,36 +25,32 @@ class BaseAuthenticationController extends Controller
         $id = $request->id;
         $password = $request->password;
 
-        // Check in the `staff` table
-        $staff = DB::table('staff')->where('id', $id)->first();
+        $staff = DB::selectOne( "SELECT id, password FROM staff WHERE id = $id");
         if ($staff && Hash::check($password, $staff->password)) {
             Auth::guard('staff')->loginUsingId($id);
             return redirect()->route('staff.dashboard');
         }
 
-        // Check in the `ug_students` table
-        $ugStudent = DB::table('ug_students')->where('id', $id)->first();
+        $ugStudent =DB::selectOne( "SELECT id, password FROM ug_students WHERE id = $id");
+        
         if ($ugStudent && Hash::check($password, $ugStudent->password)) {
             Auth::guard('ug_student')->loginUsingId($id);
             return redirect()->route('ug_students.dashboard');
         }
 
-        // Check in the `pg_students` table
-        $pgStudent = DB::table('pg_students')->where('id', $id)->first();
+        $pgStudent = DB::selectOne( "SELECT id, password FROM pg_students WHERE id = $id");
         if ($pgStudent && Hash::check($password, $pgStudent->password)) {
             Auth::guard('pg_student')->loginUsingId($id);
             return redirect()->route('pg_students.dashboard');
         }
 
-        // Check in the `professors` table
-        $professor = DB::table('professors')->where('id', $id)->first();
+        $professor =DB::selectOne( "SELECT id, password FROM professors WHERE id = $id");
         if ($professor && Hash::check($password, $professor->password)) {
             Auth::guard('professor')->loginUsingId($id);
             return redirect()->route('professors.dashboard');
         }
 
-        // If no match is found, return back with an error
-        return back()->withErrors(['login_failed' => 'Invalid ID or password.']);
+        return back()->withErrors(['login_failed' => 'Invalid id or password']);
     }
 
     public function logout(Request $request)

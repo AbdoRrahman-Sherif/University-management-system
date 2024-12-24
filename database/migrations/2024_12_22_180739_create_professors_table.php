@@ -12,9 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("
-        CREATE TABLE professors (
-            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        DB::statement("CREATE TABLE professors (
+            id BIGINT UNSIGNED PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             university_email VARCHAR(255) NOT NULL UNIQUE,
             national_id VARCHAR(255) NOT NULL UNIQUE,
