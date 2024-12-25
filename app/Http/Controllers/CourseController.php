@@ -21,6 +21,15 @@ class CourseController extends Controller
         return view('courses.list_courses', compact('courses'));
     }
 
+
+    
+    public function closeRegistration(Request $request)
+    {
+        DB::update("UPDATE Courses SET CourseStatus = 'closed registrations' WHERE CourseCode = ?", [$request->CourseCode]);
+
+        return redirect()->route('staff.dashboard')->with('success', 'Registration closed successfully.');
+    }
+
     public function register(Request $request)
     {
         

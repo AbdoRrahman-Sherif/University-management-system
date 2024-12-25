@@ -47,12 +47,22 @@
                                     {{ $course->CourseStatus }}
                             </td>
                         </tr>
+                        <tr>
+                        <form action="{{ route('courses.closeregistration') }}" method="POST">
+                            @csrf
+
+                            <input type="hidden" name="CourseCode" value="{{ $course->CourseCode }}">
+                            <button type="submit">close</button>
+                        </form>
+                    </tr>
+
                     </table>
                 <br  />
         @endforeach
         @elseif(Auth::guard('ug_student')->check()) 
 
         @foreach($courses as $course)
+        @if ($course->CourseStatus == 'accepting registrations')
         <table border="1">
             <tr>
                 <th>Course Name</th>
@@ -78,8 +88,6 @@
                     <form action="{{ route('courses.register') }}" method="POST">
                         @csrf
 
-                    
-                        <!-- Hidden input field for user ID -->
                         <input type="hidden" name="CourseCode" value="{{ $course->CourseCode }}">
                         <button type="submit">Register</button>
                     </form>
@@ -91,6 +99,9 @@
                 </td>
             </tr>
         </table>
+        <br  />
+
+        @endif
         @endforeach          
 
         @else
