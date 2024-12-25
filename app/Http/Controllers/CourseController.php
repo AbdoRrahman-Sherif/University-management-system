@@ -23,7 +23,7 @@ class CourseController extends Controller
             $registered = DB::select('SELECT * FROM CourseRegistrations WHERE StudentID = ?', [session('id')]);
             $registeredCourseCodes = [];
             foreach ($registered as $registration) {
-                $registeredCourseCodes[] = $registration->CourseCode; // Adjust 'CourseID' to match your database column name
+                $registeredCourseCodes[] = $registration->CourseCode; 
             }
             return view('courses.list_courses', compact('courses', 'registeredCourseCodes'));
 
