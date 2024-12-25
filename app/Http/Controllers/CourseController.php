@@ -17,7 +17,17 @@ class CourseController extends Controller
 
     public function list()
     {
-        $courses = DB::select('SELECT * FROM Courses');  
+        $courses = DB::select('SELECT * FROM Courses'); 
+
+        if (Auth::guard('ug_student')->check()) {
+            $registered = DB::select('SELECT * FROM CourseRegistrations WHERE StudentID = ?', [session('id')]);
+            $registeredCourseCodes = [];
+            foreach ($registered as $registration) {
+                $registeredCourseCodes[] = $registration->CourseCode; // Adjust 'CourseID' to match your database column name
+            }
+            return view('courses.list_courses', compact('courses', 'registeredCourseCodes'));
+
+        } 
         return view('courses.list_courses', compact('courses'));
     }
 
