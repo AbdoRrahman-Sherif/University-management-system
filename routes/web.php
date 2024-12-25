@@ -74,3 +74,5 @@ Route::get('/courses', [CourseController::class, 'list'])->name('courses.list');
 Route::middleware(['role:staff'])->get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
 Route::middleware(['role:staff'])->post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
 Route::middleware(['role:ug_student'])->post('/courses/register', [CourseController::class, 'register'])->name('courses.register');
+Route::middleware(['role:staff'])->post('/courses/close', [CourseController::class, 'closeRegistration'])->name('courses.closeregistration');
+
