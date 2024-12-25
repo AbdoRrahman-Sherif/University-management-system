@@ -30,9 +30,13 @@
                 <tr><th>Sex</th><td>{{ $staff->sex }}</td></tr>
                 <tr><th>Type</th><td>{{ $staff->staff_type }}</td></tr>
             </table>
+            <a href="{{ route('courses.create') }}" class="btn btn-primary">Create New Course</a>
+            <a href="{{ route('courses.list') }}" class="btn btn-primary">List Courses</a>
+
         @else
             <p>No data found.</p>
         @endif
+
     </div>
 
 </main>

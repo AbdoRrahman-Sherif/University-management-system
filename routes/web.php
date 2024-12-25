@@ -9,6 +9,8 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\UgStudentController;
 use App\Http\Controllers\PgStudentController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseRegistrationController;
 
 
 //views
@@ -63,3 +65,12 @@ Route::middleware(['role:pg_student'])->get('/pg_students/dashboard',[PgStudentC
 Route::middleware(['role:professor'])->get('/professors/dashboard', [ProfessorController::class, 'dashboard'])->name('professors.dashboard');
 
 Route::middleware(['role:admission_application'])->get('/admission/dashboard',  [AdmissionApplicationController::class, 'dashboard'])->name('admission.dashboard');
+
+
+
+
+// Routes for Courses
+Route::get('/courses', [CourseController::class, 'list'])->name('courses.list');
+Route::middleware(['role:staff'])->get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+Route::middleware(['role:staff'])->post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
+Route::middleware(['role:ug_student'])->post('/courses/register', [CourseController::class, 'register'])->name('courses.register');

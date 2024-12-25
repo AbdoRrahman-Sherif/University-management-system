@@ -28,23 +28,32 @@ class BaseAuthenticationController extends Controller
 
         if (Auth::guard('staff')->attempt(['id' => $id,'password' => $password])) 
         {
+            session(['id' => Auth::guard('staff')->id()]); 
+
+
             return redirect()->route('staff.dashboard');
         }
 
 
 
         if (Auth::guard('ug_student')->attempt(['id' => $id, 'password' => $password])) {
+            session(['id' => Auth::guard('ug_student')->id()]); 
+
             return redirect()->route('ug_students.dashboard');
         }
         
 
         if (Auth::guard('pg_student')->attempt(['id' => $id, 'password' => $password])) {
+            session(['id' => Auth::guard('pg_student')->id()]); 
+
             return redirect()->route('pg_students.dashboard');
         }
         
         
 
         if (Auth::guard('professor')->attempt(['id' => $id, 'password' => $password])) {
+            session(['id' => Auth::guard('professor')->id()]); 
+
             return redirect()->route('professors.dashboard');
         }
 

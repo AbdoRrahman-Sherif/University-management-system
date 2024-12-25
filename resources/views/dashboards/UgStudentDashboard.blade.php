@@ -34,6 +34,8 @@
                     <tr><th>Academic Advisor </th><td>Dr. {{ $student->advisor_name }}</td></tr>
                     <tr><th>Allowed Credit Hours</th><td>{{ $student->allowed_credit_hours }}</td></tr>
                 </table>
+                <a href="{{ route('courses.list') }}" class="btn btn-primary">List Courses</a>
+
             @else
                 <p>No data found.</p>
             @endif
