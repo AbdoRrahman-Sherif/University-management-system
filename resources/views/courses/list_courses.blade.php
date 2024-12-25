@@ -62,7 +62,7 @@
         @elseif(Auth::guard('ug_student')->check()) 
 
         @foreach($courses as $course)
-        @if ($course->CourseStatus == 'accepting registrations')
+        @if ($course->CourseStatus == 'accepting registrations' && !in_array($course->CourseCode, $registeredCourseCodes) )
         <table border="1">
             <tr>
                 <th>Course Name</th>
